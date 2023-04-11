@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: cornsilk;
+}
+
+.main {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 700px) {
+  .main {
+    flex-direction: column;
+  }
+}
+.main .main_paragraph1, .main .second, .main .main_paragraph2 {
+  font-style: italic;
+}
+.main .main_paragraph1:hover, .main .second:hover, .main .main_paragraph2:hover {
+  color: cadetblue;
+}
+.light {
+  background-color: white;
+  color: black;
+}/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,76 @@
+// import partial files starting with an underscore.
+@import './resets';
+@import './variables';
+
+@at-root {
+    background-color: black;
+}
+
+//functions to use a code more than once.
+@function weight($name) {
+    @return map-get($font-style, $name);
+}
+
+//mixin is just some css code you want to include in other elements too.
+@mixin flex($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin theme($light-color) {
+    @if $light-color {
+        background-color: lighten($body-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+
+@mixin mobile() {
+    @media (max-width :$mobile) {
+        @content
+    }
+}
+
+body {
+    background-color: $body-color;
+}
+
+.main {
+    width: 80% - 10%;
+    margin: 0 auto;
+
+    @include mobile {
+        flex-direction: column;
+    }
+
+    @include flex(row);
+
+    //interpolation is used 
+    //Nesting is another powerful tool of sass.
+    #{&}_paragraph1 {
+        font-style: weight(modern);
+
+        &:hover {
+            color: cadetblue;
+        }
+    }
+
+    #{&}_paragraph2 {
+
+        //paragraph2 get all properties of paragraph1 with extend
+        @extend .main_paragraph1;
+
+
+    }
+}
+
+.light {
+    @include theme(true)
+}
+
+//will not extend main_paragraph1 as they must be in same element and at same hierarchy level.
+.second {
+    @extend .main_paragraph1;
+
+}
